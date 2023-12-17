@@ -7,7 +7,7 @@ class NaviWidgetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Normal Widget Page'),
+        title: const Text('Navi Widget Page'),
       ),
       body: PageView(
         children: const <Widget>[

@@ -7,7 +7,7 @@ class ContainerWidgetPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Layout Widget Page'),
+        title: const Text('Container Widget Page'),
       ),
       body: PageView(
         children: const <Widget>[
