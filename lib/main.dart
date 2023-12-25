@@ -4,6 +4,7 @@ import 'widget/normal_widget_page.dart';
 import 'widget/layout_widget_page.dart';
 import 'widget/container_widget_page.dart';
 import 'widget/navi_widget_page.dart';
+import 'dart/basic_syntax_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,10 +32,12 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
 
   final List<PageItem> pages = [
+    PageItem(title: 'Dart基础', page: const BasicSyntaxPage()),
     PageItem(title: '基础Widget', page: const NormalWidgetPage()),
     PageItem(title: '布局Widget', page: const LayoutWidgetPage()),
     PageItem(title: '容器Widget', page: const ContainerWidgetPage()),
     PageItem(title: '导航Widget', page: const NaviWidgetPage()),
+    
     // 可以继续添加更多页面
   ];
   @override

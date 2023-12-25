@@ -32,18 +32,29 @@ class NavigatorPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // 普通路由传值
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                var result = await Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const SecondPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const SecondPage(
+                            title: '第一页传给你的',
+                          )),
                 );
+                print('第二页传回来的值为$result');
               },
               child: const Text('跳转到第二个页面'),
             ),
+            // 命名路由传值
             ElevatedButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '/third');
+              onPressed: () async {
+                var result = await Navigator.pushNamed(
+                  context,
+                  '/third',
+                  arguments: {'title': "第一页传给你的"},
+                );
+                print('第三页传回来的值为$result');
               },
               child: const Text('通过路由名跳转'),
             ),
@@ -55,8 +66,8 @@ class NavigatorPage extends StatelessWidget {
 }
 
 class SecondPage extends StatelessWidget {
-  const SecondPage({super.key});
-
+  const SecondPage({super.key, this.title});
+  final String? title;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +75,16 @@ class SecondPage extends StatelessWidget {
         title: const Text('第二个页面'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('返回'),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, '这是第二个页面返回的数据');
+              },
+              child: const Text('返回'),
+            ),
+            Text(title ?? '没有传值')
+          ],
         ),
       ),
     );
@@ -80,16 +96,24 @@ class ThirdPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Map args = ModalRoute.of(context)!.settings.arguments as Map;
+    var title = args['title'];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('第三个页面'),
       ),
       body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text('返回'),
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context, '这是第三个页面返回的数据');
+              },
+              child: const Text('返回'),
+            ),
+            Text(title ?? '没有传值')
+          ],
         ),
       ),
     );
