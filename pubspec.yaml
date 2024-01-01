@@ -39,6 +39,7 @@ dependencies:
   shared_preferences: 2.0.10
   # dart语法高亮
   flutter_highlight: ^0.7.0 
+  provider: ^6.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

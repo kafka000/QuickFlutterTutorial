@@ -1,4 +1,8 @@
+import 'package:demo/statemangement/inheritedwidget_page.dart';
+import 'package:demo/statemangement/provider_page.dart';
+import 'package:demo/statemangement/setstate_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'common/page_item.dart';
 import 'widget/normal_widget_page.dart';
 import 'widget/layout_widget_page.dart';
@@ -37,8 +41,13 @@ class HomePage extends StatelessWidget {
     PageItem(title: '布局Widget', page: const LayoutWidgetPage()),
     PageItem(title: '容器Widget', page: const ContainerWidgetPage()),
     PageItem(title: '导航Widget', page: const NaviWidgetPage()),
-    
-    // 可以继续添加更多页面
+    PageItem(title: '状态管理-state', page: const SetStatePage()),
+    PageItem(
+        title: '状态管理-InheritedWidget', page: const InheritedColorWidgetPage()),
+    PageItem(
+        title: '状态管理-Provider',
+        page: ChangeNotifierProvider.value(
+            value: ProviderColorToggler(), child: const ProviderPage())),
   ];
   @override
   Widget build(BuildContext context) {
